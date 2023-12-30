@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "dmipy"
+version = "1.1"
+description = "dmipy: diffusion microstructure imaging in python"
+authors = ["Rutger Fick <fick.rutger@gmail.com>"]  # Adjust as needed
+readme = "README.md"  # Poetry automatically uses README.md if available
+
+[tool.poetry.dependencies]
+python = "^3.8"  # Specify your Python version compatibility
+numpy = "^1.23"
+dipy = "^1.7.0"
+scipy = "^1.9"
+nibabel = "^5.0"
+boto = "*"
+cvxpy = "*"  # cvxpy is used for the optimization of the NODDI-Watson model
+numba = ">=0.53"
+pathos = "*"
+tqdm = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

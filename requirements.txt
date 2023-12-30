@@ -1,6 +1,0 @@
-numpy(>=1.13)
-scipy
-dipy
-cvxpy
-boto
-pathlib

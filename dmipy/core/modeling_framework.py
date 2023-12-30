@@ -11,6 +11,7 @@ from uuid import uuid4
 import numpy as np
 import pkg_resources
 from dipy.utils.optpkg import optional_package
+from tqdm import tqdm
 
 from .fitted_modeling_framework import (
     FittedMultiCompartmentModel,
@@ -1214,6 +1215,10 @@ class MultiCompartmentModel(MultiCompartmentModelProperties):
         self.optimizer = fit_func
 
         start = time()
+        if not use_parallel_processing:
+            #TQDM
+            iterator = tqdm(enumerate(zip(*mask_pos)), total=N_voxels)
+
         for idx, pos in enumerate(zip(*mask_pos)):
             voxel_E = data_[pos] / S0[pos]
             voxel_x0_vector = x0_[pos]
@@ -1226,6 +1231,7 @@ class MultiCompartmentModel(MultiCompartmentModelProperties):
                 fitted_parameters_lin[idx] = pool.apipe(fit_func, *fit_args)
             else:
                 fitted_parameters_lin[idx] = fit_func(*fit_args)
+                iterator.update(1)
         if use_parallel_processing:
             fitted_parameters_lin = np.array(
                 [p.get() for p in fitted_parameters_lin])

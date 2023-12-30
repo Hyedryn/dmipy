@@ -21,10 +21,7 @@ project = 'dmipy'
 copyright = '2017, Rutger Fick and Demian Wassermann'
 
 currentdir = os.path.abspath(os.path.dirname(__file__))
-ver_file = os.path.join(currentdir, '..', project, 'version.py')
-with open(ver_file) as f:
-    exec(f.read())
-source_version = __version__
+source_version = "1.1.0"
 
 currentdir = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(os.path.join(currentdir, 'tools'))
